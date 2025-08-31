@@ -1,0 +1,18 @@
+sudo pacman -S \  
+  pipewire pipewire-audio pipewire-pulse pipewire-alsa \
+  sof-firmware wireplumber \
+  bluez bluez-utils bluetooth-autoconnect \
+  gst-plugin-pipewire \
+  pulseaudio-bluetooth \
+  pavucontrol 
+  
+# Enable Bluetooth service
+sudo systemctl enable --now bluetooth.service
+sudo systemctl enable --now bluetooth-autoconnect.service
+
+# Ensure wireplumber is running
+sudo systemctl enable --now pipewire pipewire-pulse wireplumber
+
+# Add current user to input group
+echo "[+] Adding user '$USER' to 'input' group..."
+sudo usermod -aG audio,input $USER

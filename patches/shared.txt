@@ -1,0 +1,16 @@
+sudo mkdir /home/shared
+
+sudo groupadd shared
+
+sudo usermod -aG shared user1
+sudo usermod -aG shared user2
+
+sudo chgrp -R shared /home/shared
+
+sudo chmod -R g+rwX /home/shared
+
+sudo chmod g+s /home/shared
+
+sudo setfacl -Rdm g:shared:rwX /home/shared
+
+
