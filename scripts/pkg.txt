@@ -8,10 +8,12 @@ ffmpeg ffmpegthumbnailer
 libnotify swaync-git
 blueman pavucontrol
 yt-dlp mpv mpv-mpris
-samba ufw
 man-db btop nvtop
 xdg-terminal-exec
 sway-audio-idle-inhibit
+
+gnome-keyring polkit-gnome
+samba ufw
 
 ##################
 ## For Hyprland ##

@@ -21,7 +21,7 @@ FONT=""   # Nerd Font font icon
 
 REPO_URL="https://github.com/0LA-X/dotfiles2.0.git"
 DOTFILES_DIR="$HOME/.dotfiles2.0"
-PACKAGE_LIST="$DOTFILES_DIR/scripts/packages.txt"
+PACKAGE_LIST="$DOTFILES_DIR/scripts/pkg.txt"
 YAY_DIR="$HOME/.yay"
 
 # ASCII Art Header
