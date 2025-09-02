@@ -3,6 +3,8 @@ config/.config/tmux/plugins/*
 
 config/.config/hypr/.cache/*
 
+config/.config/hypr_caelestia/scheme/current.conf
+
 # Ignore gtk themes
 # config/.config/gtk-3.0/
 # config/.config/gtk-4.0/
