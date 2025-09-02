@@ -91,8 +91,8 @@ staged    = " "
 deleted   = " "  
 stashed   = "≡"
 # ahead     = "⇡ "
-# behind    = "⇣ "
-# diverged  = "⇕ "
+behind    = "⇣ "
+diverged  = "⇕ "
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
