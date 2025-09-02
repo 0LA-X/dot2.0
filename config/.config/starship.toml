@@ -82,7 +82,7 @@ format = '[ $symbol $branch]($style)'
 
 [git_status]
 style = "vesper_alt"
-format = "[ *$conflicted$untracked$modified$staged$renamed$deleted]($style) [($ahead_behind$stashed)](color_green)"
+format = "[ $conflicted$untracked$modified$staged$renamed$deleted]($style) [($ahead_behind$stashed)](color_green)"
 conflicted = " "  
 untracked = " "  
 modified  = " "  
