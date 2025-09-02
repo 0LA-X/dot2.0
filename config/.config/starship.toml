@@ -86,14 +86,14 @@ fetch = " "
 conflicted = " "  
 untracked  = " "  
 modified   = " "  
-staged     = " "  
+staged     = " "  
 renamed    = " "  
 deleted    = " "  
 stashed    = "≡"
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "color_black"
+style = "color_green"
 
 [c]
 symbol = " "
