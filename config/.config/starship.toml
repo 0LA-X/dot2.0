@@ -16,9 +16,9 @@ $line_break\
 $character"""
 
 right_format = """
-[](color_brown)\
+[](ash)\
 $battery\
-[ ](color_rust)\
+[ ](color_pink)\
 """
 
 palette = 'welp'
@@ -39,6 +39,8 @@ color_pink = '#FF4DA6'
 color_purple = "#E100FF"
 color_black = '#000000'
 color_rust = '#B7410E'
+vesper = '#FFC799'
+vesper_alt = '#FFB86C'
 ash = '#A9A9A9'
 
 [os]
@@ -81,15 +83,17 @@ format = '[ $symbol $branch]($style)'
 
 [git_status]
 style = "color_green"
-format = "[[( *$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
-fetch = " " 
+format = "[ *$conflicted$untracked$modified$staged$renamed$deleted]($style) [($ahead_behind$stashed)]($style)"
+untracked = " "  
+modified  = " "  
+renamed   = " "  
+staged    = " "  
+deleted   = " "  
+stashed   = "≡"
+ahead     = "⇡ "
+behind    = "⇣ "
+diverged  = "⇕ "
 conflicted = " "  
-untracked  = " "  
-modified   = " "  
-staged     = " "  
-renamed    = " "  
-deleted    = " "  
-stashed    = "≡"
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
