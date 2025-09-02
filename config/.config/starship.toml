@@ -16,7 +16,7 @@ $line_break\
 $character"""
 
 right_format = """
-[](ash)\
+[](vesper_alt)\
 $battery\
 [ ](color_pink)\
 """
@@ -41,7 +41,6 @@ color_black = '#000000'
 color_rust = '#B7410E'
 vesper = '#FFC799'
 vesper_alt = '#FFB86C'
-ash = '#A9A9A9'
 
 [os]
 disabled = false
@@ -84,20 +83,20 @@ format = '[ $symbol $branch]($style)'
 [git_status]
 style = "color_green"
 format = "[ *$conflicted$untracked$modified$staged$renamed$deleted]($style) [($ahead_behind$stashed)]($style)"
+conflicted = " "  
 untracked = " "  
 modified  = " "  
 renamed   = " "  
 staged    = " "  
 deleted   = " "  
 stashed   = "≡"
-ahead     = "⇡ "
-behind    = "⇣ "
-diverged  = "⇕ "
-conflicted = " "  
+# ahead     = "⇡ "
+# behind    = "⇣ "
+# diverged  = "⇕ "
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "color_green"
+style = "color_pink"
 
 [c]
 symbol = " "
