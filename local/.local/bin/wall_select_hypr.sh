@@ -1,11 +1,8 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # Directories
 scriDir="$HOME/.local/bin"
 wallDIR="$HOME/.config/hypr/Wallpapers"
-hyprpaper_conf="$HOME/.config/hypr/hyprpaper.conf"
-wall_state="$HOME/.cache/last_wallpaper"
-
 cache_dir="$HOME/.config/hypr/.cache"
 wallCache="$cache_dir/.wallpaper"
 
@@ -13,72 +10,32 @@ wallCache="$cache_dir/.wallpaper"
 mkdir -p "$cache_dir"
 [[ ! -f "$wallCache" ]] && touch "$wallCache"
 
-# --restore mode: restore last wallpaper at boot
-if [[ "$1" == "--restore" ]]; then
-    if [[ -f "$wall_state" ]]; then
-        last_wall=$(cat "$wall_state")
-        if [[ -f "$last_wall" ]]; then
-            echo "preload = $last_wall" > "$hyprpaper_conf"
-            echo "wallpaper = ,$last_wall" >> "$hyprpaper_conf"
-            pkill hyprpaper
-            hyprpaper &
-            exit 0
-        fi
-    fi
-    echo "No wallpaper to restore or file not found."
-    exit 1
-fi
+# Gather images
+mapfile -d '' PICS < <(find "$wallDIR" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) -print0)
 
-# Check wallpaper directory
-if [[ ! -d "$wallDIR" ]]; then
-    echo "Wallpaper directory does not exist: $wallDIR"
-    notify-send -i "󰃠 Directory does not exist: $wallDIR" -t 1500
-    exit 1
-fi
+[[ ${#PICS[@]} -eq 0 ]] && { echo "No wallpapers found in $wallDIR"; exit 1; }
 
-# Gather image files
-PICS=()
-while IFS= read -r -d $'\0' file; do
-    PICS+=("$file")
-done < <(find "$wallDIR" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) -print0)
-
-if [[ ${#PICS[@]} -eq 0 ]]; then
-    echo "No wallpapers found in $wallDIR"
-    notify-send -i "󰃠 No wallpapers found" -t 1500
-    exit 1
-fi
-
-# Random wallpaper option
 RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
-RANDOM_PIC_NAME="${#PICS[@]}. random"
-
-# Rofi config
-rofi_command="rofi -show -dmenu -config ~/.config/rofi/styles/rofi-wall.rasi"
+RANDOM_PIC_NAME="🔀 Random"
 
 # Rofi menu
 menu() {
   for pic in "${PICS[@]}"; do
     pic_name=$(basename "$pic")
-    if [[ ! "$pic_name" =~ \.gif$ ]]; then
-      printf "%s\x00icon\x1f%s\n" "${pic_name%.*}" "$pic"
-    else
-      printf "%s\n" "$pic_name"
-    fi
+    [[ "$pic_name" =~ \.gif$ ]] && continue
+    printf "%s\x00icon\x1f%s\n" "${pic_name%.*}" "$pic"
   done
-  printf "$RANDOM_PIC_NAME\n"
+  printf "%s\n" "$RANDOM_PIC_NAME"
 }
 
-# Get user choice
-choice=$(menu | $rofi_command)
+choice=$(menu | rofi -dmenu -show -config ~/.config/rofi/styles/rofi-wall.rasi)
 
-# Exit if no choice
 [[ -z "$choice" ]] && exit 0
 
-# Handle random selection
+# Find selection
 if [[ "$choice" == "$RANDOM_PIC_NAME" ]]; then
     selected_pic="$RANDOM_PIC"
 else
-    selected_pic=""
     for pic in "${PICS[@]}"; do
         if [[ "$(basename "$pic")" == "$choice"* ]]; then
             selected_pic="$pic"
@@ -87,26 +44,31 @@ else
     done
 fi
 
-# Apply wallpaper via hyprpaper
+# Apply wallpaper with hyprpaper
 if [[ -n "$selected_pic" ]]; then
-    notify-send -i "$selected_pic" "󰄴 Changing wallpaper" -t 1500
+    notify-send -i "$selected_pic" "Setting wallpaper..." -t 1200
 
-    # Save selected wallpaper
-    echo "$selected_pic" > "$wall_state"
+    # Ensure hyprpaper is running
+    if ! pgrep -x "hyprpaper" >/dev/null; then
+        hyprpaper &
+        sleep 1
+    fi
 
-    # Write hyprpaper config
-    echo "preload = $selected_pic" > "$hyprpaper_conf"
-    echo "wallpaper = ,$selected_pic" >> "$hyprpaper_conf"
+    # Preload + set wallpaper on all monitors
+    hyprctl hyprpaper preload "$selected_pic"
+    for monitor in $(hyprctl monitors -j | jq -r '.[].name'); do
+        hyprctl hyprpaper wallpaper "$monitor,$selected_pic"
+    done
 
-    # Restart hyprpaper
-    pkill hyprpaper
-    hyprpaper &
+    ln -sf "$selected_pic" "$cache_dir/current_wallpaper.png"
+    echo "${selected_pic##*/}" | sed 's/\.[^.]*$//' > "$wallCache"
 else
-    echo "Image not found."
+    notify-send -u normal -t 2000 " Image not found!"
+    echo "Error: image not found."
     exit 1
 fi
 
-# [ Call Helper Script ]
+# Call Helper Script
 sleep 0.5
 
 if [[ -f "$scriDir/wallcache.sh" ]]; then
