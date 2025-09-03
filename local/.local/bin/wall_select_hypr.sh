@@ -6,6 +6,13 @@ wallDIR="$HOME/.config/hypr/Wallpapers"
 hyprpaper_conf="$HOME/.config/hypr/hyprpaper.conf"
 wall_state="$HOME/.cache/last_wallpaper"
 
+cache_dir="$HOME/.config/hypr/.cache"
+wallCache="$cache_dir/.wallpaper"
+
+# Ensure required dirs/files
+mkdir -p "$cache_dir"
+[[ ! -f "$wallCache" ]] && touch "$wallCache"
+
 # --restore mode: restore last wallpaper at boot
 if [[ "$1" == "--restore" ]]; then
     if [[ -f "$wall_state" ]]; then
