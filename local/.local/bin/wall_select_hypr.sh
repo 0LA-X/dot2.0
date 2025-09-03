@@ -1,9 +1,26 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 # Directories
-scriDir="$HOME/.local/bin/wall_scripts"
+scriDir="$HOME/.local/bin"
 wallDIR="$HOME/.config/hypr/Wallpapers"
 hyprpaper_conf="$HOME/.config/hypr/hyprpaper.conf"
+wall_state="$HOME/.cache/last_wallpaper"
+
+# --restore mode: restore last wallpaper at boot
+if [[ "$1" == "--restore" ]]; then
+    if [[ -f "$wall_state" ]]; then
+        last_wall=$(cat "$wall_state")
+        if [[ -f "$last_wall" ]]; then
+            echo "preload = $last_wall" > "$hyprpaper_conf"
+            echo "wallpaper = ,$last_wall" >> "$hyprpaper_conf"
+            pkill hyprpaper
+            hyprpaper &
+            exit 0
+        fi
+    fi
+    echo "No wallpaper to restore or file not found."
+    exit 1
+fi
 
 # Check wallpaper directory
 if [[ ! -d "$wallDIR" ]]; then
@@ -20,6 +37,7 @@ done < <(find "$wallDIR" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg
 
 if [[ ${#PICS[@]} -eq 0 ]]; then
     echo "No wallpapers found in $wallDIR"
+    notify-send -i "󰃠 No wallpapers found" -t 1500
     exit 1
 fi
 
@@ -66,13 +84,28 @@ fi
 if [[ -n "$selected_pic" ]]; then
     notify-send -i "$selected_pic" "󰄴 Changing wallpaper" -t 1500
 
+    # Save selected wallpaper
+    echo "$selected_pic" > "$wall_state"
+
+    # Write hyprpaper config
     echo "preload = $selected_pic" > "$hyprpaper_conf"
     echo "wallpaper = ,$selected_pic" >> "$hyprpaper_conf"
 
+    # Restart hyprpaper
     pkill hyprpaper
     hyprpaper &
-
 else
     echo "Image not found."
     exit 1
+fi
+
+# [ Call Helper Script ]
+sleep 0.5
+
+if [[ -f "$scriDir/wallcache.sh" ]]; then
+    notify-send -u low -t 1000 "󰃠 Generating wallpaper cache..."
+    "$scriDir/wallcache.sh" && \
+        notify-send -u low -t 1000 "󰄴 Wallpaper cache updated."
+else
+    notify-send -u normal -t 2000 " wallcache.sh not found!"
 fi
