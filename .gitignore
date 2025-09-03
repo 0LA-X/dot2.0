@@ -6,6 +6,9 @@ config/.config/hypr/hyprpaper.conf
 
 config/.config/hypr_caelestia/scheme/current.conf
 
+config/.config/starship_bak
+config/.config/starship.toml_bak
+
 # Ignore gtk themes
 config/.config/gtk-3.0/
 config/.config/gtk-4.0/
