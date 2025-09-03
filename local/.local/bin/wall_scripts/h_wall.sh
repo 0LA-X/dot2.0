@@ -1,13 +1,13 @@
 #!/bin/bash
 
-scrDir="$HOME/.local/lib/wall_scripts"
+scrDir="$HOME/.local/bin/wall_scripts"
 cacheDir="$HOME/.config/hypr/.cache"
-themeFile="$cacheDir/.theme"
+# themeFile="$cacheDir/.theme"
 wallCache="$cacheDir/.wallpaper"
 hyprpaper_conf="$HOME/.config/hypr/hyprpaper.conf"
 
-theme=$(cat "$themeFile")
-wallDir="$HOME/.config/hypr/Wallpapers/${theme}"
+# theme=$(cat "$themeFile")
+# wallDir="$HOME/.config/hypr/Wallpapers/${theme}"
 
 [[ ! -f "$wallCache" ]] && touch "$wallCache"
 

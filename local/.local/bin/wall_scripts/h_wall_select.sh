@@ -2,17 +2,13 @@
 
 # Directories
 scriDir="$HOME/.local/bin/wall_scripts"
-cache_dir="$HOME/.config/hypr/.cache"
-wallCache="$cache_dir/.wallpaper"
 wallDIR="$HOME/.config/hypr/Wallpapers"
 hyprpaper_conf="$HOME/.config/hypr/hyprpaper.conf"
-
-# Ensure wallpaper cache file exists
-[[ ! -f "$wallCache" ]] && touch "$wallCache"
 
 # Check wallpaper directory
 if [[ ! -d "$wallDIR" ]]; then
     echo "Wallpaper directory does not exist: $wallDIR"
+    notify-send -i "󰃠 Directory does not exist: $wallDIR" -t 1500
     exit 1
 fi
 
@@ -32,7 +28,7 @@ RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
 RANDOM_PIC_NAME="${#PICS[@]}. random"
 
 # Rofi config
-rofi_command="rofi -show -dmenu -config ~/.config/rofi/themes/rofi-wall.rasi"
+rofi_command="rofi -show -dmenu -config ~/.config/rofi/styles/rofi-wall.rasi"
 
 # Rofi menu
 menu() {
@@ -68,7 +64,7 @@ fi
 
 # Apply wallpaper via hyprpaper
 if [[ -n "$selected_pic" ]]; then
-    notify-send -i "$selected_pic" "Changing wallpaper" -t 1500
+    notify-send -i "$selected_pic" "󰄴 Changing wallpaper" -t 1500
 
     echo "preload = $selected_pic" > "$hyprpaper_conf"
     echo "wallpaper = ,$selected_pic" >> "$hyprpaper_conf"
@@ -76,13 +72,7 @@ if [[ -n "$selected_pic" ]]; then
     pkill hyprpaper
     hyprpaper &
 
-    ln -sf "$selected_pic" "$cache_dir/current_wallpaper.png"
-    echo "${selected_pic##*/}" | sed 's/\.[^.]*$//' > "$wallCache"
 else
     echo "Image not found."
     exit 1
 fi
-
-# Call helper script if it exists (theme logic removed)
-sleep 0.5
-[[ -f "$scriDir/wallcache.sh" ]] && "$scriDir/wallcache.sh"
