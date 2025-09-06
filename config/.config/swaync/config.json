@@ -76,7 +76,7 @@
         },
         {
           "label": " ",
-          "command": "nm-connection-editor"
+          "command": "kitty --class nmtui-popup nmtui"
         },
         {
           "label": "󰂯",
