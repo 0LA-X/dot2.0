@@ -68,7 +68,7 @@
 
   "bluetooth": {
     "format-on": "󰂯",
-    "format-off": "BT-off",
+    "format-off": "󰂲",
     "format-disabled": "󰂲",
     "format-connected-battery": "{device_battery_percentage}% 󰂯",
     "format-alt": "{device_alias} 󰂯",
