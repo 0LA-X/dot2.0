@@ -58,12 +58,11 @@ alias exit-user_alt='pkill -TERM -u $USER'
 
 # [ QOL ]
 alias vi='nvim'
-alias sudo nvim='sudo env WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
-    XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
-    HOME=/root nvim'
+
 alias sudo-nvim='sudo env WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
-    XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
-    HOME=/root nvim'
+  XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
+  HOME=/root nvim'
+
 alias pacman='sudo pacman'
 
 # [ Grub Command ]
