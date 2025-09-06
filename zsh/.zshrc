@@ -34,9 +34,9 @@ source "$ZSH/oh-my-zsh.sh"
 export PATH="$PATH:/usr/bin"  # If installed to /usr/bin
 export TERMINAL="/usr/bin/kitty"  # e.g., "foot", "kitty", "alacritty"
 
-# -------------------------
-
-# Helpful aliases
+# -----------------------
+## [ Helpful aliases ] 
+# -----------------------
 alias c='clear' # clear terminal
 alias x='exit' # Exit terminal
 alias l='eza -lh --icons=auto' # long list
@@ -46,32 +46,36 @@ alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long li
 alias ld='eza -lhD --icons=auto'                                       # long list dirs
 alias lt='eza --icons=auto --tree' # list folder as tree
 
-alias exit-user='pkill -KILL -u $USER'
-alias gparted='sudo -E gparted'
-alias mkdir='mkdir -p'
-
-alias fastfetch2='fastfetch -c ~/.config/fastfetch/alt.jsonc'
-alias obsidian='obsidian --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --ozone-platform-hint=auto'
-
-# yt-dlp
-alias yt-720='yt-dlp -f "bestvideo[height=720]+bestaudio/best[height=720]"'
-alias yt-480='yt-dlp -f "bestvideo[height=480]+bestaudio/best[height=480]"'
-
 # Make navigation easier
 alias .='z ../'
 alias ..='z ../../'
 alias ...='z ../../../'
+alias ....='z ../../../../'
 
-alias v='nvim'
+# [ User Management ]
+alias exit-user='pkill -KILL -u $USER'
+alias exit-user_alt='pkill -TERM -u $USER'
+
+# [ QOL ]
 alias vi='nvim'
-alias vim='sudo nvim' # Use vim with sudo 
+alias sudo nvim='sudo env WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
+    XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
+    HOME=/root nvim'
 alias sudo-nvim='sudo env WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
     XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
     HOME=/root nvim'
 alias pacman='sudo pacman'
 
-# Grub Command
+# [ Grub Command ]
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+
+alias gparted='sudo -E gparted'
+
+# yt-dlp
+alias yt-720='yt-dlp -f "bestvideo[height=720]+bestaudio/best[height=720]"'
+alias yt-480='yt-dlp -f "bestvideo[height=480]+bestaudio/best[height=480]"'
+
+alias obsidian='obsidian --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --ozone-platform-hint=auto'
 
 # -------------------------
 
