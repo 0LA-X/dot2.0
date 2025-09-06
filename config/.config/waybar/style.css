@@ -93,7 +93,6 @@ tooltip {
 }
 
 #custom-pacman{
-  border: 2px dashed #BFFF00;
   padding: 5px 5px 5px 5px;
   transition: all .3s ease;
   color:@color7;
