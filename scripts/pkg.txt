@@ -21,6 +21,7 @@ waybar rofi-wayland
 swww wlogout
 imv grim jq cliphist
 wf-recorder slurp 
+kitty ghostty
 
 # ---------------
 #  [ Themeing ]
