@@ -33,5 +33,5 @@ if [[ -n "$wifi_dev" ]]; then
     exit 0
 fi
 
-# Not connected
-echo '{"text": "󰖪", "class": "disconnected"}'
+# Not connected 
+echo '{"text": "", "class": "disconnected"}'
