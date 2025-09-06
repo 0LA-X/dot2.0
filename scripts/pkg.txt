@@ -1,40 +1,37 @@
-#####################
-## Must Have Utils ##
-#####################
+#----------------------
+# [ Must Have Utils ]
+#----------------------
+git nvim zoxide
 wireplumber playerctl pamixer
 udisks2 udiskie
-zoxide
 ffmpeg ffmpegthumbnailer
 libnotify swaync-git
-blueman pavucontrol
 yt-dlp mpv mpv-mpris
 man-db btop nvtop
-xdg-terminal-exec
-sway-audio-idle-inhibit
 
 gnome-keyring polkit-gnome
 samba ufw
 
-##################
-## For Hyprland ##
-##################
-hyprland hypridle hyprlock hyprsunset
+#-------------------
+# [ For Hyprland ]
+#-------------------
+hyprland hypridle hyprlock 
 xdg-desktop-portal-hyprland
 waybar rofi-wayland 
 swww wlogout
 imv grim jq cliphist
 wf-recorder slurp 
 
-##############
-## Themeing ##
-##############
+# ---------------
+#  [ Themeing ]
+# ---------------
 nwg-look kvantum
-qt6-wayland qt5-wayland
-qt5ct qt6ct
+# qt6-wayland qt5-wayland
+# qt5ct qt6ct
 
-##################
-## AUR packages ##
-##################
+#--------------------
+# [ AUR packages ]
+#--------------------
 #zen-browser
 #spotify-launcher
 #qbittorrent
@@ -50,5 +47,5 @@ gvfs-mtp nautilus-admin-gtk4
 ## Fonts ##
 ###########
 ttf-nerd-fonts-symbols
-ttf-material-variable-symbols-git
+# ttf-material-variable-symbols-git
 ttf-montserrat

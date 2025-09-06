@@ -9,7 +9,7 @@ sudo nvim /etc/greetd/config.toml
 vt = 1
 
 [default_session]
-command = "tuigreet --greeting '¯\_(ツ)_/¯ Arch Linux󰣇 ™' --time --remember --remember-user-session --user-menu --sessions /usr/share/wayland-sessions --session-wrapper /etc/greetd/launch-session.sh"
+command = "tuigreet --greeting 'Arch Linux' --time --remember --remember-user-session --user-menu --sessions /usr/share/wayland-sessions --session-wrapper /etc/greetd/launch-session.sh"
 user = "greeter"
 # --------
 

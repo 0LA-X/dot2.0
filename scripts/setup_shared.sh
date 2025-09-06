@@ -4,7 +4,7 @@
 echo "=== Shared Directory Setup ==="
 
 # 1. Create shared directory
-SHARED_DIR="/home/shared"
+SHARED_DIR="/home/Shared"
 sudo mkdir -p "$SHARED_DIR"
 echo "Created directory: $SHARED_DIR"
 

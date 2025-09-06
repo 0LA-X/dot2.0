@@ -2,7 +2,7 @@
 
 set -e
 
-echo "  Starting Zsh + Plugin + Theme setup on Arch Linux..."
+echo "  Starting Zsh + Plugin + Starship setup on Arch Linux..."
 
 # Check yay installation
 if ! command -v yay &> /dev/null; then
@@ -25,16 +25,16 @@ else
     echo "  Zsh is already the default shell."
 fi
 
-# Install eza
+# Install eza + pokego
 if ! command -v eza &> /dev/null; then
     echo "  Installing eza/pokego..."
     yay -S --noconfirm eza pokego-bin
 fi
 
-# Install Oh My Zsh
-if [ ! -d "${HOME}/.oh-my-zsh" ]; then
-    echo "  Installing Oh My Zsh..."
-    RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# Install Starship prompt
+if ! command -v starship &> /dev/null; then
+    echo "  Installing Starship prompt..."
+    yay -S --noconfirm starship
 fi
 
 # Plugin base directory
@@ -57,12 +57,5 @@ if [ ! -d "${ZSH_CUSTOM}/plugins/zsh-interactive-cd" ]; then
     echo "  Installing zsh-interactive-cd..."
     git clone https://github.com/changyuheng/zsh-interactive-cd "${ZSH_CUSTOM}/plugins/zsh-interactive-cd"
 fi
-
-# Powerlevel10k theme
-# if [ ! -d "${ZSH_CUSTOM}/themes/powerlevel10k" ]; then
-#     echo "  Installing Powerlevel10k theme..."
-#     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM}/themes/powerlevel10k"
-#     echo "  Make sure your .zshrc sets ZSH_THEME=\"powerlevel10k/powerlevel10k\""
-# fi
 
 echo "  All components installed! Restart your terminal to apply changes."

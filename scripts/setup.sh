@@ -19,8 +19,8 @@ PACKAGE="" # Nerd Font package
 GIT=""    # Nerd Font git icon
 FONT=""   # Nerd Font font icon
 
-REPO_URL="https://github.com/0LA-X/dotfiles2.0.git"
-DOTFILES_DIR="$HOME/.dotfiles2.0"
+REPO_URL="https://github.com/0LA-X/dot2.0.git"
+DOTFILES_DIR="$HOME/dot2.0"
 PACKAGE_LIST="$DOTFILES_DIR/scripts/pkg.txt"
 YAY_DIR="$HOME/.yay"
 
