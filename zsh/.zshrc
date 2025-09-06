@@ -53,7 +53,7 @@ alias ...='z ../../../'
 alias ....='z ../../../../'
 
 # [ User Management ]
-alias exit-user='pkill -KILL -u $USER'
+alias exit-user='pkill Hyprland || pkill sway || pkill niri || loginctl terminate-user $USER'
 alias exit-user_alt='pkill -TERM -u $USER'
 
 # [ QOL ]
