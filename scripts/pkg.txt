@@ -9,7 +9,7 @@ libnotify swaync-git
 yt-dlp mpv mpv-mpris
 man-db btop nvtop
 
-gnome-keyring polkit-gnome
+gnome-keyring polkit-kde-agent
 samba ufw
 
 #-------------------
@@ -17,8 +17,9 @@ samba ufw
 #-------------------
 hyprland hypridle hyprlock 
 xdg-desktop-portal-hyprland
-waybar rofi-wayland 
-swww wlogout
+# waybar rofi-wayland 
+# swww 
+wlogout
 imv grim jq cliphist
 wf-recorder slurp 
 kitty ghostty
@@ -43,6 +44,7 @@ nwg-look kvantum
 ##############
 nautilus nautilus-share
 gvfs-mtp nautilus-admin-gtk4
+yazi 
 
 ###########
 ## Fonts ##

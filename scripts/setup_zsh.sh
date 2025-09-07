@@ -14,6 +14,7 @@ fi
 if ! command -v zsh &> /dev/null; then
     echo "  Zsh not found. Installing Zsh..."
     yay -S --noconfirm zsh fzf
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"\n
 fi
 
 # Set Zsh as default shell if not already

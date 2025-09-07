@@ -3,92 +3,71 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
   tmux attach-session -t main || tmux new-session -s main
 fi
 
-# fastfetch
-pokego --name eevee -no-title -s # delcatty # eevee 
+pokego --name eevee -no-title -s
 
-# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Standard plugins can be found in $ZSH/plugins/
+# Plugin list (standard and custom)
 plugins=(
   git
   sudo
   zsh-autosuggestions
-  zsh-syntax-highlighting
   zsh-interactive-cd
 )
 
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-
-# -------------------------------------
+# Load custom completions
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 autoload -U compinit && compinit
+
+# Load Oh My Zsh
 source "$ZSH/oh-my-zsh.sh"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+export PATH="$PATH:/usr/bin"
 
-###################
-## export $PATHS ##
-###################
-export PATH="$PATH:/usr/bin"  # If installed to /usr/bin
-export TERMINAL="/usr/bin/kitty"  # e.g., "foot", "kitty", "alacritty"
-
-# -----------------------
-## [ Helpful aliases ] 
-# -----------------------
-alias c='clear' # clear terminal
-alias x='exit' # Exit terminal
-alias l='eza -lh --icons=auto' # long list
-alias ls='eza -G --icons=auto' # short list
-alias lsa='eza -Ga --icons=auto' # short list with hidden files
-alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
-alias ld='eza -lhD --icons=auto'                                       # long list dirs
-alias lt='eza --icons=auto --tree' # list folder as tree
-
-# Make navigation easier
+# [ Aliases & Shortcuts ] 
+# -- Navigation
 alias .='z ../'
 alias ..='z ../../'
 alias ...='z ../../../'
 alias ....='z ../../../../'
 
-# [ User Management ]
-alias exit-user='pkill Hyprland || pkill sway || pkill niri || loginctl terminate-user $USER'
-alias exit-user_alt='pkill -TERM -u $USER'
+# -- File listing (eza)
+alias c='clear'
+alias x='exit'
+alias l='eza -lh --icons=auto'
+alias ls='eza -G --icons=auto'
+alias lsa='eza -Ga --icons=auto'
+alias ll='eza -lha --icons=auto --sort=name --group-directories-first'
+alias ld='eza -lhD --icons=auto'
+alias lt='eza --icons=auto --tree'
 
-# [ QOL ]
 alias vi='nvim'
-
-alias sudo-nvim='sudo env WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
-  XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
-  HOME=/root nvim'
+alias sudo-nvim='sudo env WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR HOME=/root nvim'
 
 alias pacman='sudo pacman'
 
-# [ Grub Command ]
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
 alias gparted='sudo -E gparted'
 
-# yt-dlp
 alias yt-720='yt-dlp -f "bestvideo[height=720]+bestaudio/best[height=720]"'
 alias yt-480='yt-dlp -f "bestvideo[height=480]+bestaudio/best[height=480]"'
 
+# -- Apps
 alias obsidian='obsidian --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --ozone-platform-hint=auto'
 
-# -------------------------
+# -- User session management
+alias exit-user='pkill Hyprland || pkill sway || pkill niri || loginctl terminate-user $USER'
+alias exit-user_alt='pkill -TERM -u $USER'
 
-# Shell Intergration
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 
-# -------------------------
-
-# History
+# [ Zsh History Options ]
 HISTSIZE=5000
-HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
-HISTDUP=erase
+HISTFILE=~/.zsh_history
+
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
@@ -96,6 +75,7 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 
-# -------------------------
-
 eval "$(starship init zsh)"
+
+# Load zsh-syntax-highlighting LAST
+source "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

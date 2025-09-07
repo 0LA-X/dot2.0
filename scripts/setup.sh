@@ -106,6 +106,7 @@ function stow_dotfiles() {
         # Exclude .git/ and scripts/
         [[ "$dir" == ".git/" ]] && continue
         [[ "$dir" == "scripts/" ]] && continue
+        [[ "$dir" == "patches/" ]] && continue
 
         echo -e "${YELLOW}${ARROW} Stowing ${dir%/}...${NC}"
         stow -v "${dir%/}"
@@ -131,10 +132,10 @@ function install_tpm() {
             echo -e "${GREEN}${CHECK} TPM already installed at $TPM_DIR.${NC}"
         fi
 
-#        echo -e "${BLUE}${GEAR} Installing TPM plugins...${NC}"
-#        "$TPM_DIR/bin/install_plugins"
-#    else
-#        echo -e "${YELLOW}${INFO} No tmux.conf found in ~/.config/tmux — skipping TPM install.${NC}"
+        echo -e "${BLUE}${GEAR} Installing TPM plugins...${NC}"
+        "$TPM_DIR/bin/install_plugins"
+    else
+        echo -e "${YELLOW}${INFO} No tmux.conf found in ~/.config/tmux — skipping TPM install.${NC}"
     fi
 }
 
@@ -153,12 +154,12 @@ function install_firacode() {
 # Main execution
 function main() {
     show_header
-    manage_dotfiles_repo
-    ensure_yay
-    ensure_stow
+    # manage_dotfiles_repo
+    # ensure_yay
+    # ensure_stow
     update_system
-    install_packages
-    stow_dotfiles
+    # install_packages
+    # stow_dotfiles
     install_tpm
     install_firacode
 
