@@ -7,6 +7,6 @@ config/.config/hypr/hyprpaper.conf
 config/.config/hypr_caelestia/scheme/current.conf
 
 # [ Spicetify ]
-config/.config/spicetify/*
-!config/.config/spicetify/Themes
-!config/.config/spicetify/Themes/**
+# config/.config/spicetify/*
+# !config/.config/spicetify/Themes
+# !config/.config/spicetify/Themes/**

@@ -3,7 +3,7 @@
 # Audio and Bluetooth setup script
 
 echo "Installing audio and Bluetooth packages..."
-sudo pacman -S --noconfirm \
+sudo yay -S --noconfirm \
   pipewire pipewire-audio pipewire-pulse pipewire-alsa \
   sof-firmware wireplumber \
   bluez bluez-utils bluetooth-autoconnect \
