@@ -120,7 +120,7 @@ function stow_dotfiles() {
 # Install TPM (Tmux Plugin Manager)
 function install_tpm() {
     local TMUX_CONF="$HOME/.config/tmux/tmux.conf"
-#    local TPM_DIR="$HOME/.config/tmux/plugins/tpm"
+    local TPM_DIR="$HOME/.config/tmux/plugins/tpm"
 
     if [[ -f "$TMUX_CONF" ]]; then
         echo -e "${GREEN}${CHECK} Detected tmux.conf at $TMUX_CONF${NC}"
