@@ -9,7 +9,7 @@ libnotify swaync-git
 yt-dlp mpv mpv-mpris
 man-db btop nvtop
 
-gnome-keyring polkit-kde-agent
+gnome-keyring polkit-gnome
 samba ufw
 
 #-------------------
