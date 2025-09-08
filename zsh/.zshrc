@@ -23,6 +23,7 @@ autoload -U compinit && compinit
 source "$ZSH/oh-my-zsh.sh"
 
 export PATH="$PATH:/usr/bin"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # [ Aliases & Shortcuts ] 
 # -- Navigation
@@ -57,7 +58,7 @@ alias yt-480='yt-dlp -f "bestvideo[height=480]+bestaudio/best[height=480]"'
 alias obsidian='obsidian --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --ozone-platform-hint=auto'
 
 # -- User session management
-alias exit-user='pkill Hyprland || pkill sway || pkill niri || loginctl terminate-user $USER'
+alias exit-user='pkill quickshell || pkill caelstia || pkill Hyprland || pkill tmux || loginctl terminate-user $USER'
 alias exit-user_alt='pkill -TERM -u $USER'
 
 eval "$(fzf --zsh)"
