@@ -1,7 +1,7 @@
 # Ignore everything inside plugins/
 config/.config/tmux/plugins/*
 
-config/.config/hypr/.cache/*
+config/.config/hypr_main/.cache/*
 config/.config/hypr/hyprpaper.conf
 
 config/.config/hypr_caelestia/scheme/current.conf
