@@ -2,7 +2,8 @@
 
 # Directories
 scriDir="$HOME/.local/bin"
-wallDIR="$HOME/.config/hypr/Wallpapers"
+# wallDIR="$HOME/.config/hypr/Wallpapers"
+wallDIR="$HOME/Pictures/Wallpapers/"
 cache_dir="$HOME/.config/hypr/.cache"
 wallCache="$cache_dir/.wallpaper"
 
@@ -69,7 +70,7 @@ else
 fi
 
 # Call Helper Script
-sleep 0.5
+sleep 1
 
 if [[ -f "$scriDir/wallcache.sh" ]]; then
     notify-send -u low -t 1000 "󰃠 Generating wallpaper cache..."
