@@ -25,6 +25,10 @@ source "$ZSH/oh-my-zsh.sh"
 export PATH="$PATH:/usr/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 
+export TERMINAL=ghostty
+export EDITOR=nvim
+export SYSTEMD_EDITOR=nvim
+
 # [ Aliases & Shortcuts ] 
 # -- Navigation
 alias .='z ../'
@@ -43,6 +47,7 @@ alias ld='eza -lhD --icons=auto'
 alias lt='eza --icons=auto --tree'
 
 alias vi='nvim'
+alias vim='sudo vim'
 alias sudo-nvim='sudo env WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR HOME=/root nvim'
 
 alias pacman='sudo pacman'
