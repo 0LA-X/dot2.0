@@ -1,28 +1,30 @@
 #----------------------
 # [ Must Have Utils ]
 #----------------------
-git nvim zoxide
-wireplumber playerctl pamixer
+brightnessctl playerctl 
+wireplumber pipewire-jack
+imagemagick ffmpeg ffmpegthumbnailer
 udisks2 udiskie
-ffmpeg ffmpegthumbnailer
-libnotify swaync-git
+git nvim zoxide
+
+# [ Needed ]
+swaync-git libnotify
 yt-dlp mpv mpv-mpris
 man-db btop nvtop
-
 gnome-keyring polkit-gnome
-samba ufw
+samba ufw 
 
 #-------------------
-# [ For Hyprland ]
+# [ Hyprland ]
 #-------------------
 hyprland hypridle hyprlock 
 xdg-desktop-portal-hyprland
-# waybar rofi-wayland 
-# swww 
-wlogout
-imv grim jq cliphist
+waybar rofi-wayland hyprpaper
+grim jq cliphist
 wf-recorder slurp 
 kitty ghostty
+swappy pavucontrol
+wlogout power-profiles-daemon
 
 # ---------------
 #  [ Themeing ]
@@ -35,16 +37,16 @@ nwg-look kvantum
 # [ AUR packages ]
 #--------------------
 #zen-browser
-#spotify-launcher
-#qbittorrent
-#obsidian
+spotify qbittorrent
+firefox obsidian
 
 ##############
 ## Nautilus ##
 ##############
 nautilus nautilus-share
 gvfs-mtp nautilus-admin-gtk4
-yazi 
+yazi  
+nautilus-image-converter 
 
 ###########
 ## Fonts ##
