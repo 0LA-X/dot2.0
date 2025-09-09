@@ -21,6 +21,7 @@ FONT=""   # Nerd Font font icon
 
 REPO_URL="https://github.com/0LA-X/dot2.0.git"
 DOTFILES_DIR="$HOME/dot2.0"
+scriDir="$DOTFILES_DIR/scripts"
 PACKAGE_LIST="$DOTFILES_DIR/scripts/pkg.txt"
 YAY_DIR="$HOME/.yay"
 
@@ -151,19 +152,29 @@ function install_firacode() {
     fi
 }
 
+# boot_theme_setup () {
+#   if [[ -f "$scriDir/setup_boot_themes.sh" ]]; then
+#     echo " Calling Helper Scripts"
+#       "$scriDir/setup_boot_themes.sh" 
+#    else
+#       echo "script not found!"
+#   fi
+# }
+
 # Main execution
 function main() {
-    show_header
-    # manage_dotfiles_repo
-    # ensure_yay
-    # ensure_stow
-    update_system
-    # install_packages
-    # stow_dotfiles
-    install_tpm
-    install_firacode
+  show_header
+  manage_dotfiles_repo
+  ensure_yay
+  ensure_stow
+  update_system
+  install_packages
+  stow_dotfiles
+  install_tpm
+  install_firacode
+  # boot_theme_setup
 
-    echo -e "${GREEN}${CHECK} Dotfiles setup and dependencies complete!${NC}"
+  echo -e "${GREEN}${CHECK} Dotfiles setup and dependencies complete!${NC}"
 }
 
 main
