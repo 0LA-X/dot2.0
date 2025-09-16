@@ -32,6 +32,7 @@ wlogout power-profiles-daemon
 nwg-look kvantum
 # qt6-wayland qt5-wayland
 # qt5ct qt6ct
+adw-gtk-theme
 
 #--------------------
 # [ AUR packages ]

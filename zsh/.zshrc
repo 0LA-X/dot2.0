@@ -47,7 +47,7 @@ alias ld='eza -lhD --icons=auto'
 alias lt='eza --icons=auto --tree'
 
 alias vi='nvim'
-alias vim='sudo vim'
+alias vim='sudo nvim'
 alias sudo-nvim='sudo env WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR HOME=/root nvim'
 
 alias pacman='sudo pacman'
@@ -57,8 +57,6 @@ alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias gparted='sudo -E gparted'
 
 alias yt-720='yt-dlp -f "bestvideo[height=720]+bestaudio/best[height=720]"'
-alias yt-480='yt-dlp -f "bestvideo[height=480]+bestaudio/best[height=480]"'
-
 # -- Apps
 alias obsidian='obsidian --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --ozone-platform-hint=auto'
 
