@@ -1,0 +1,236 @@
+{
+  "layer": "top",
+  "width": 1480,
+  "position": "top", 
+  "margin-top": 5,
+  "reload_style_on_change": true,
+
+  "modules-left": [
+    "idle_inhibitor",
+    "custom/dot",
+    // "custom/uptime",
+    "custom/notify"
+  ],
+
+  "modules-center": [
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+
+  "modules-right": [
+    "clock",
+    "custom/network_status",
+    "battery",
+    "power-profiles-daemon",
+    "custom/power"
+  ],
+
+/// MODULES ///
+
+"hyprland/workspaces": {
+  "rotate": 0,
+  "all-outputs": true,
+  "active-only": false,
+  "on-click": "activate",
+  "disable-scroll": true,
+  "on-scroll-up": "hyprctl dispatch workspace -1",
+  "on-scroll-down": "hyprctl dispatch workspace +1",
+  "format": "{icon}",
+  "persistent-workspaces": {
+      "*": 5
+      },
+      "format-icons": {
+          "1": "一",
+          "2": "二",
+          "3": "三",
+          "4": "四",
+          "5": "五",
+          "6": "六",
+          "7": "七",
+          "8": "八",
+          "9": "九",
+          "10": "十",
+          "11": "十一",
+          "12": "十二",
+          "13": "十三",
+          "14": "十四",
+          "15": "十五",
+          "16": "十六",
+          "17": "十七",
+          "18": "十八",
+          "19": "十九",
+          "20": "二十",
+          "urgent": "",
+          "focused": "",
+          "default": " "
+  }
+},
+
+//  
+
+"hyprland/window": {
+"format": " {}",
+"rotate": 0,
+"separate-outputs": true,
+"rewrite": {
+  // Kitty
+  ".*zsh.*": "   ",
+
+  // Zen Browser
+  ".*Zen Browser.*": "   ",
+  ".*Zen.*": "   ",
+
+  // Spotify
+  ".*Spotify Premium.*": "  󰓇 ",
+  ".*Spotify.*": "  󰓇 ",
+
+  // Nautilus
+  ".*Home.*": "  󰉋 ",
+  ".*Downloads.*": "   ",
+  ".*Videos.*": "  󰨜 ",
+  ".*Documents.*": "  󰈙 ",
+  ".*Pictures.*": "   ",
+  ".*Coding.*": "    ",
+  ".*win_share.*": "  󰁯 ",
+  ".*Trash.*": "   ",
+  ".*Network.*": "  󱘖 ",
+
+  ".*qBittorrent.*": "  ",
+  ".*Obsidian.*": "  󰠮 ",
+  ".*lutris": "   "
+},
+   "max-length": 20
+},
+
+
+"idle_inhibitor": {
+"format": "{icon}",
+"format-icons": {
+    "activated": " ",
+    "deactivated": " "
+    }
+},
+
+"clock": {
+"timezone": "Africa/Lagos",
+"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+  "format-alt": "{:%Y-%m-%d}"
+  },
+
+  "backlight": {
+      // "device": "acpi_video1",
+      "format": "{percent}% {icon}",
+      "format-icons": ["", "", "", "", "", "", "", "", ""]
+  },
+
+  "battery": {
+    "interval": 3,
+      "states": {
+          "good": 95,
+          "warning": 50,
+          "critical": 38
+      },
+      "format": "{capacity}% {icon}",
+      "format-full": "{capacity}%  ",
+      "format-charging": "{capacity}%  ",
+      "format-plugged": "{capacity}% ",
+      "format-alt": "{time} {icon}",
+      // "format-good": "", // An empty format will hide the module
+      // "format-full": "",
+      "format-icons": [" ", " ", " ", " ", " "]
+  },
+  "battery#bat2": {
+    "interval": 1,
+      "bat": "BAT2"
+   },
+
+
+  "pulseaudio": {
+      // "scroll-step": 1, // %, can be a float
+      "format": "{volume}% {icon}",
+      "format-bluetooth": "{volume}% {icon}",
+      "format-bluetooth-muted": " {icon}",
+      "format-muted": " {format_source}",
+      "format-icons": {
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", "", ""]
+      },
+      "on-click": "pavucontrol"
+  },
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+
+// CUSTOM MODULES \\
+
+"custom/keybindhint": {
+"format": " ",
+"tooltip-format": " Keybinds",
+"rotate": 0,
+    "on-click": "~/.local/bin/keybinds_hint.sh"
+},
+
+"custom/uptime": {
+"exec": "uptime -p | sed 's/up //'",
+"interval": 60,
+"format": "󰔟 {}",
+"tooltip": false
+},
+
+"custom/power": {
+"format" : "⏻ ",
+  "tooltip": false,
+  "on-click": "wlogout"
+},
+
+"custom/network_status": {
+"interval": 1,
+"exec": "~/.local/bin/network_status.sh",
+"return-type": "json",
+"tooltip": true,
+"on-click": "kitty --class nmtui-popup nmtui",
+"on-click-right": "kitty --class nmtui-popup nmtui"
+},
+
+  "custom/notify": {
+      "tooltip": true,
+      "tooltip-format": "Left Click: Launch Notification Center\nRight Click: Do not Disturb",
+      "format": "󰵙 {} {icon} ",
+      "format-icons": {
+          "notification": "<span foreground='red'><sup></sup></span>",
+          "none": "",
+          "dnd-notification": "<span foreground='red'><sup></sup></span>",
+          "dnd-none": "",
+          "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+          "inhibited-none": "",
+          "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+          "dnd-inhibited-none": ""
+      },
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click": "sleep 0.1 && swaync-client -t -sw",
+      "on-click-right": "swaync-client -d -sw",
+      "escape": true
+  },
+
+"custom/dot": {
+"format": " ",
+"tooltip": false
+}
+
+}
