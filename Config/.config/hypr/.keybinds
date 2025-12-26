@@ -1,0 +1,48 @@
+##   = SUPER ##
+--------------------
+##   = ROFI MENU ##
+  + RETURN | Kitty & Terminal
+  + Z | Zen-Browser
+  + S | Spotify
+  + T | Qbittorrent
+  + N | Nmtui
+  + B | Bluetooth Manager
+  + N | Audio Controls
+
+#!---------
+
+
+
+ 
+
+
+
+## Qol STUFF   ##
+  SHIFT + W | Change Wallpaper
+  + Y | Take ScreenShot
+  + H | Clipboard History
+  SHIFT + H | Hyprpicker
+  +
+  + PRINT | Record Screen 
+  + CRTL PRINT | Record Region
+  +
+  + [ | Toogle Nightlight --dec
+  + ] | Toogle Nightlight --inc
+  + \ | Toogle Nightlight --def
+
+## WINDOW MANAGEMENT   ##
+  + [←/↑/→/↓] | Tooglefocus Using Arrow Keys
+  + SHIFT [←/↑/→/↓] | Move Window Using ←/↑/→/↓
+
+
+## WORKSPACES   ##
+  + [1-9] | Switch Between Workspaces [1-9]
+  + ALT [1-9] | Move active Window | [1-9]
+
+## SESSION MANAGEMENT   ##
+  + L | Lockscreen Hyprlock
+  + CTRL ALT DEL | Wlogout
+
+## RELOAD CONFIG   ##
+  + SHIFT 7 | Reload Waybar
+  + ALT 7 | Reload Swww
