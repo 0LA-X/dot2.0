@@ -20,7 +20,7 @@ GIT=""    # Nerd Font git icon
 FONT=""   # Nerd Font font icon
 
 REPO_URL="https://github.com/0LA-X/dot2.0.git"
-DOTFILES_DIR="$HOME/dot2.0"
+DOTFILES_DIR="$HOME/2.0"
 scriDir="$DOTFILES_DIR/scripts"
 PACKAGE_LIST="$DOTFILES_DIR/scripts/pkg.txt"
 YAY_DIR="$HOME/.yay"
@@ -58,8 +58,7 @@ function install_yay() {
     echo -e "${YELLOW}${ARROW} Installing yay...${NC}"
     sudo pacman -Sy --needed git base-devel
     git clone https://aur.archlinux.org/yay.git "$YAY_DIR"
-    cd "$YAY_DIR"
-    makepkg -si --noconfirm
+    cd "$YAY_DIR" makepkg -si --noconfirm
     cd ~
     rm -rf "$YAY_DIR"
 }
@@ -167,11 +166,11 @@ function main() {
   manage_dotfiles_repo
   ensure_yay
   ensure_stow
-  update_system
+  # update_system
   install_packages
   stow_dotfiles
   install_tpm
-  install_firacode
+  # install_firacode
   # boot_theme_setup
 
   echo -e "${GREEN}${CHECK} Dotfiles setup and dependencies complete!${NC}"

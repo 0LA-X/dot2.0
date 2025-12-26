@@ -2,7 +2,7 @@
 # [ Must Have Utils ]
 #----------------------
 brightnessctl playerctl 
-wireplumber pipewire-jack
+# wireplumber pipewire-jack
 imagemagick ffmpeg ffmpegthumbnailer
 udisks2 udiskie
 git nvim zoxide
@@ -11,7 +11,7 @@ git nvim zoxide
 swaync-git libnotify
 yt-dlp mpv mpv-mpris
 man-db btop nvtop
-gnome-keyring polkit-gnome
+# gnome-keyring polkit-gnome
 samba ufw 
 
 #-------------------
@@ -22,14 +22,14 @@ xdg-desktop-portal-hyprland
 waybar rofi-wayland hyprpaper
 grim jq cliphist
 wf-recorder slurp 
-kitty ghostty
+# kitty ghostty
 swappy pavucontrol
 wlogout power-profiles-daemon
 
 # ---------------
 #  [ Themeing ]
 # ---------------
-nwg-look kvantum
+# nwg-look kvantum
 # qt6-wayland qt5-wayland
 # qt5ct qt6ct
 adw-gtk-theme
@@ -37,9 +37,9 @@ adw-gtk-theme
 #--------------------
 # [ AUR packages ]
 #--------------------
-#zen-browser
-spotify qbittorrent
-firefox obsidian
+# zen-browser-bin
+# spotify qbittorrent
+# firefox obsidian
 
 ##############
 ## Nautilus ##
