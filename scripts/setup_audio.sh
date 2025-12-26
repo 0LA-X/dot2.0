@@ -15,7 +15,7 @@ echo "[1/5] Installing audio and Bluetooth packages..."
 
 yay -S --noconfirm \
   pipewire pipewire-audio pipewire-pulse pipewire-alsa \
-  wireplumber pipewire-jack \
+  wireplumber pipewire-jack pamixer \
   sof-firmware \
   gst-plugin-pipewire \
   bluez bluez-utils bluetooth-autoconnect \
