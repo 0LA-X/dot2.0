@@ -1,10 +1,8 @@
 # Ignore everything inside plugins/
-config/.config/tmux/plugins/*
+Config/.config/tmux/plugins/*
 
-config/.config/hypr_main/.cache/*
-config/.config/hypr/hyprpaper.conf
-
-config/.config/hypr_caelestia/scheme/current.conf
+Config/.config/hypr/.cache/*
+Config/.config/hypr/hyprpaper.conf
 
 # [ Spicetify ]
 # config/.config/spicetify/*
