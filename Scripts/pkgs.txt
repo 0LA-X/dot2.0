@@ -1,0 +1,61 @@
+#---------------
+#   [ Utils ]
+#---------------
+nvim tmux zoxide 
+git npm pyhton-uv
+man-db btop nvtop
+ripgrep fd pv jq 
+stow rsync curl wget
+cifs-utils uwsm 7zip
+samba ufw net-utils
+usbutils udisks2 udiskie
+yt-dlp mpv-mpris ffmpeg 
+slurp fzf duf fastfetch 
+
+
+#[ AMD Drivers ]
+amd-ucode vdpauinfo 
+mesa mesa-utils libva-utils
+vulkan-radeon vulkan-icd-loader
+libvdpau-va-gl libva-mesa-driver 
+
+
+#-------------------
+#   [ Hyprland ]
+#-------------------
+hyprland hypridle hyprlock 
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+gnome-keyring polkit-gnome
+kitty ghostty foot
+power-profiles-daemon
+gammastep geoclue
+
+#[ Theming ]
+qt5ct-kde qt6ct-kde 
+nwg-look adw-gtk-theme
+
+#-----------------
+#  [ Packages ]
+#-----------------
+mpv vlc swappy
+firefox obsidian
+qbittorrent elecwhat-bin
+spotify zen-browser-bin
+
+
+#[ Nautilus ] 
+nautilus nautilus-share yazi  
+gvfs-mtp nautilus-admin-gtk4
+nautilus-image-converter 
+
+
+# [ Fonts ] 
+ttf-cascadia-code-nerd
+noto-fonts-emoji
+ttf-nerd-fonts-symbols 
+
+#[ ZSH ]
+zsh starship
+zsh-syntax-highlighting 
+zsh-autosuggestions
