@@ -54,31 +54,27 @@ zinit light jeffreytse/zsh-vi-mode
 # Prevent starship <-> vi-mode recursion
 zstyle ':zsh-vi-mode:*' prompt ''
 
-# -- Fast syntax highlighting (heavy → lazy)
-zinit ice depth=1 wait'1' lucid blockf atinit"zicompinit; zicdreplay"
+# -- Autosuggestions & Fast syntax highlighting (heavy → lazy)
+# zinit ice depth=1 wait'1' lucid blockf atinit"zicompinit; zicdreplay"
+zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
 
-# -- Completion extensions
-zinit ice wait'1' lucid
-zinit light zsh-users/zsh-completions
-
-# -- Autosuggestions
-zinit ice wait'2' lucid
-zinit light zsh-users/zsh-autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#CBAACB"
 
+# -- Completion extensions
+zinit light zsh-users/zsh-completions
+
 # -- Tools (lazy)
-zinit ice wait'2' lucid
 zinit snippet OMZL::completion.zsh  
 zinit snippet OMZL::key-bindings.zsh
 zinit snippet OMZL::history.zsh
 
-zinit ice wait'2' lucid
 zinit snippet OMZP::fzf
 zinit snippet OMZP::zoxide
 zinit snippet OMZP::colored-man-pages
 
-zinit ice wait'1' lucid
+zinit ice wait'0' lucid
 zinit light zsh-users/zsh-history-substring-search
 
 # After all zinit plugins
@@ -87,7 +83,7 @@ zinit cdreplay -q
 # typeset -gA FAST_HIGHLIGHT
 # FAST_HIGHLIGHT[history-substring-search-up]=1
 # FAST_HIGHLIGHT[history-substring-search-down]=1
-#
+
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=green'
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red'
 
@@ -97,7 +93,7 @@ HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red'
 
 HISTSIZE=6000
 SAVEHIST=$HISTSIZE
-HISTFILE=~/.zsh_history
+HISTFILE="$HOME/.zsh_history"
 HIST_STAMPS="dd/mm/yyyy"
 
 setopt appendhistory
