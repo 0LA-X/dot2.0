@@ -1,16 +1,101 @@
-# -------------------------------------
-#   Launch TMUX on terminal startup
-# -------------------------------------
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux attach-session -t NERD || tmux new-session -s NERD
+# =====================================================
+#  Session bootstrap
+# =====================================================
+
+# -- Launch TMUX
+if [[ -z "$TMUX" ]] && command -v tmux >/dev/null; then
+  tmux attach -t NERD || tmux new -s NERD
 fi
 
-# -- Fun stuff
+# -- Fun stuff 
 pokego -r 1,3,6 -no-title
 # fastfetch
 
-#  -- History
-HISTSIZE=4000
+# =====================================================
+#   Completion system (before completion plugins)
+# =====================================================
+autoload -Uz compinit
+compinit -C        # fast, safe if you trust your plugins
+_comp_options+=(globdots)
+
+# =====================================================
+#  Zinit bootstrap (must be early)
+# =====================================================
+
+ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
+
+if [[ ! -d "$ZINIT_HOME" ]]; then
+  mkdir -p "${ZINIT_HOME:h}"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+source "$ZINIT_HOME/zinit.zsh"
+
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+
+# -- Prompt (Starship)
+export STARSHIP_DISABLE_VIRTUALENV_PROMPT=1
+
+zinit ice as"command" from"gh-r" \
+  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+  atpull"%atclone" src"init.zsh"
+zinit light starship/starship
+
+# ===========================================
+# -- Plugins (lazy-loaded for speed) -- #
+# ===========================================
+
+# -- Vi mode
+zinit ice depth=1 wait'0' lucid
+zinit light jeffreytse/zsh-vi-mode
+
+# Prevent starship <-> vi-mode recursion
+zstyle ':zsh-vi-mode:*' prompt ''
+
+# -- Fast syntax highlighting (heavy → lazy)
+zinit ice depth=1 wait'1' lucid blockf atinit"zicompinit; zicdreplay"
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+# -- Completion extensions
+zinit ice wait'1' lucid
+zinit light zsh-users/zsh-completions
+
+# -- Autosuggestions
+zinit ice wait'2' lucid
+zinit light zsh-users/zsh-autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#CBAACB"
+
+# -- Tools (lazy)
+zinit ice wait'2' lucid
+zinit snippet OMZL::completion.zsh  
+zinit snippet OMZL::key-bindings.zsh
+zinit snippet OMZL::history.zsh
+
+zinit ice wait'2' lucid
+zinit snippet OMZP::fzf
+zinit snippet OMZP::zoxide
+zinit snippet OMZP::colored-man-pages
+
+zinit ice wait'1' lucid
+zinit light zsh-users/zsh-history-substring-search
+
+# After all zinit plugins
+zinit cdreplay -q
+
+# typeset -gA FAST_HIGHLIGHT
+# FAST_HIGHLIGHT[history-substring-search-up]=1
+# FAST_HIGHLIGHT[history-substring-search-down]=1
+#
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=green'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red'
+
+# =====================================================
+#  History behavior
+# =====================================================
+
+HISTSIZE=6000
 SAVEHIST=$HISTSIZE
 HISTFILE=~/.zsh_history
 HIST_STAMPS="dd/mm/yyyy"
@@ -23,79 +108,12 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# -- -- -- -- -- -- -- --
-# -- Completion system
-# -- -- -- -- -- -- -- -- 
-autoload -Uz compinit
-compinit
-_comp_options+=(globdots)
 
-# Completion UI / highlighting
-zstyle ':completion:*' menu select
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# =====================================================
+#  Aliases
+# =====================================================
 
-
-#[ Keybindings (vi-safe) ] 
-# -- Home / End
-bindkey '^[[H' beginning-of-line
-bindkey '^[[F' end-of-line
-bindkey '^[[1~' beginning-of-line
-bindkey '^[[4~' end-of-line
-bindkey '^[[7~' beginning-of-line
-bindkey '^[[8~' end-of-line
-
-# -- Tab / Shift-Tab (forward / backward completion)
-bindkey '^I' complete-word
-bindkey '^[[Z' reverse-menu-complete
-bindkey -M viins '^I' complete-word
-bindkey -M viins '^[[Z' reverse-menu-complete
-
-# -- Tools
-eval "$(fzf --zsh)"
-eval "$(zoxide init zsh)"
-
-# -- -- -- -- -- -- -- -- -- -- -- -- 
-#[ Zinit setup ]
-ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
-
-if [ ! -d "$ZINIT_HOME" ]; then
-  mkdir -p "$(dirname "$ZINIT_HOME")"
-  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-
-source "$ZINIT_HOME/zinit.zsh"
-
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# -- Plugins
-zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
-
-zinit light z-shell/F-Sy-H
-
-zinit light zsh-users/zsh-completions
-
-# Autosuggestions -- lazy loaded
-zinit light zsh-users/zsh-autosuggestions
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#CBAACB" #[ == #BFFF00  #B7410E #B2FFFF #CBAACB ]
-
-export STARSHIP_SHELL=zsh
-export STARSHIP_DISABLE_VIRTUALENV_PROMPT=1
-zinit ice as"command" from"gh-r" \
-  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-  atpull"%atclone" src"init.zsh"
-zinit light starship/starship
-
-# Syntax highlighting -- lazy loaded
-zinit light zsh-users/zsh-syntax-highlighting
-
-# Prevent starship <-> vi-mode recursion
-zstyle ':zsh-vi-mode:*' prompt ''
-
-
-#[ Aliases ]
-# -- Navigation
+# Navigation (zoxide)
 alias .='z ../'
 alias ..='z ../../'
 alias ...='z ../../../'
