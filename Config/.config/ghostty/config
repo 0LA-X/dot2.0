@@ -1,22 +1,40 @@
-# Additionally, each config option is also explained in detail
-# on Ghostty's website, at https://ghostty.org/docs/config.
+# ====================
+#   Ghostty Config
+# ====================
+font-family = CaskaydiaCove Nerd Font
+font-size = 17
 
-# cursor-style = bar
+#[ Cursor - #FFFF33 - #00CCFF - #FF073A - #39FF14]
+cursor-color = #00CCFF
+cursor-text = #000000
+cursor-style = block
+cursor-style-blink = true
 
-# ==========================
-font-family = FiraCode Nerd Font
-font-size = 13
+background-opacity = 0.80
 
-background-opacity = 0.9
+window-padding-x = 5
+window-padding-y = 5
 
-window-padding-x = 10
-window-padding-y = 10
+#[ MISC ]
+gtk-single-instance = true
 
-# [ Themes ]
-theme = "GruvboxDark"
-# theme = "GruvboxDarkHard"
-# theme = "Mathias"
-# theme = "Builtin Pastel Dark"
+#[ Shell-integration ]
+shell-integration = zsh
+confirm-close-surface = false
+
+# [ Themes - axgruv - mono - ] 
+theme = "dark"
+# theme = ""
+
+#[ Shaders_Main ]
+custom-shader = ./shaders/cursor_smear.glsl
+custom-shader = ./shaders/cursor_warp.glsl
+custom-shader = ./shaders/cursor_blaze_no_trail.glsl
+# custom-shader = ./shaders/bloom050.glsl
+
+#[ Shaders_more ]
+custom-shader = shaders/ripple_cursor.glsl
+# custom-shader = ./shaders/
 
 # [ Keybindings ]
 keybind = ctrl+space>r=reload_config
@@ -40,4 +58,3 @@ keybind = ctrl+space>q=close_tab
 #keybind = alt+j=goto_split:down
 #keybind = alt+k=goto_split:up
 #keybind = alt+l=goto_split:right
-
